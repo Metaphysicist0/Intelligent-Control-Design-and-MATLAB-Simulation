@@ -1,0 +1,71 @@
+[System]
+Name='Ghfuzzy'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=4
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='T_in_pred'
+Range=[8 35]
+NumMFs=3
+MF1='low':'trimf',[-5.5 8 14.868838028169]
+MF2='middle':'trimf',[10 21.5 32.0765845070423]
+MF3='high':'trimf',[28.0360915492958 35 48.5]
+
+[Input2]
+Name='Ia'
+Range=[0 500]
+NumMFs=3
+MF1='low':'dsigmf',[0.02198 -125 0.02198 125]
+MF2='middle':'dsigmf',[0.02198 125 0.02198 375]
+MF3='high':'dsigmf',[0.02198 375 0.02198 625]
+
+[Output1]
+Name='SideVent'
+Range=[0 1]
+NumMFs=3
+MF1='close':'trimf',[-0.4999 1.388e-17 0.4999]
+MF2='middle':'trimf',[7.17e-05 0.5 0.9999]
+MF3='open':'trimf',[0.5001 1 1.5]
+
+[Output2]
+Name='RoofVent'
+Range=[0 1]
+NumMFs=3
+MF1='close':'gaussmf',[0.2123 0]
+MF2='middle':'gaussmf',[0.2123 0.5]
+MF3='open':'gaussmf',[0.2123 1]
+
+[Output3]
+Name='Qheat'
+Range=[0 1]
+NumMFs=3
+MF1='open':'gaussmf',[0.223 0.005926]
+MF2='keep':'gaussmf',[0.1159 0.5176]
+MF3='close':'gaussmf',[0.1988 0.9815]
+
+[Output4]
+Name='Qcool'
+Range=[0 1]
+NumMFs=3
+MF1='close':'gaussmf',[0.2123 0]
+MF2='keep':'gaussmf',[0.09046 0.5]
+MF3='open':'gaussmf',[0.2123 1]
+
+[Rules]
+1 1, 1 1 1 1 (1) : 1
+2 1, 1 1 3 3 (1) : 1
+3 1, 3 3 3 3 (1) : 1
+1 2, 1 3 1 3 (1) : 1
+2 2, 2 2 3 3 (1) : 1
+3 2, 3 2 3 3 (1) : 1
+1 3, 3 3 1 1 (1) : 1
+2 3, 3 1 3 1 (1) : 1
+3 3, 3 3 3 3 (1) : 1
